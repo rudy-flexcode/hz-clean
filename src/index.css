@@ -1,0 +1,369 @@
+/* ------------------- RESET ------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #111;
+  color: #fff;
+}
+
+/* ------------------- HERO ------------------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff1a8c, #ff6ec7);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.hero-features {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: #fff;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.hero-features li {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  animation: featureFadeIn 0.5s forwards;
+}
+
+.hero-features li::before {
+  content: "✅";
+  margin-right: 0.5rem;
+  color: #22ff88;
+}
+
+.hero-features li:nth-child(1) { animation-delay: 0.2s; }
+.hero-features li:nth-child(2) { animation-delay: 0.4s; }
+.hero-features li:nth-child(3) { animation-delay: 0.6s; }
+.hero-features li:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes featureFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-size: 12rem;
+  font-weight: bold;
+  text-shadow: 2px 2px #000;
+  margin-top: 80px;
+  opacity: 0;
+  animation: heroTitleAnim 1s forwards;
+}
+
+.hero p {
+  font-size: 3rem;
+  margin: 1rem 0 2rem;
+  opacity: 0;
+  animation: heroTextAnim 1s forwards;
+  animation-delay: 0.6s;
+}
+
+.hero button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: #fff;
+  color: #ff1a8c;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+  opacity: 0;
+  animation: heroTextAnim 1s forwards;
+  animation-delay: 1s;
+}
+
+.hero button:hover {
+  background-color: transparent;
+  color: #fff;
+  border-color: #ff6ec7;
+}
+
+@keyframes heroTitleAnim {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroTextAnim {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logo-container {
+  position: absolute;
+  right: 0;
+  top: 70%;
+  transform: translateY(-50%);
+  width: 800px;
+  z-index: 0;
+}
+
+.logo-container img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* ------------------- PRESENTATION ------------------- */
+.presentation {
+  background: #ff9fd4;
+  padding: 6rem 2rem;
+}
+
+.presentation-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.presentation-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.presentation-text h3 {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #111;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.presentation-text h2 {
+  font-size: 3.2rem;
+  line-height: 1.2;
+  color: #111;
+  margin-bottom: 2rem;
+}
+
+.presentation-text p {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #222;
+  max-width: 500px;
+}
+
+/* ------------------- TARIFS ------------------- */
+.tarifs {
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.tarifs h2 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  color: #ff1a8c;
+}
+
+.tarif-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #ffffff;
+  color: #111;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: #ff1a8c;
+  margin-bottom: 0.5rem;
+}
+
+.card > p:first-of-type {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #111;
+}
+
+.tarif-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  color: #333;
+}
+
+.tarif-inclus {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background: #f3f3f3;
+  padding: 1rem;
+  border-left: 5px solid #22cc88;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.tarif-non-inclus {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background: #fdecec;
+  padding: 1rem;
+  border-left: 5px solid #ff6b6b;
+  border-radius: 8px;
+}
+
+/* ------------------- CONTACT ------------------- */
+.contact {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #ff1a8c;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  gap: 1rem;
+}
+
+.contact input,
+.contact textarea {
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 2px solid #ff1a8c;
+  background: #111;
+  color: #fff;
+}
+
+.contact button {
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  background: #ff1a8c;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.contact button:hover {
+  background: #fff;
+  color: #ff1a8c;
+}
+
+/* ------------------- RESPONSIVE ------------------- */
+/* Tablette (max-width: 900px) */
+@media (max-width: 900px) {
+  .presentation-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .presentation-text p {
+    margin: 0 auto;
+  }
+
+  .presentation-image img {
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 8rem;
+  }
+
+  .hero p {
+    font-size: 2.2rem;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    gap: 1rem;
+    top: 5px;
+  }
+
+  .logo-container {
+    width: 500px;
+    top: 85%;
+  }
+}
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 5rem;
+  }
+
+  .hero p {
+    font-size: 1.8rem;
+  }
+
+  .hero button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .logo-container {
+    width: 300px;
+    top: 88%;
+  }
+
+  .tarif-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 2rem 1.5rem;
+  }
+
+  .presentation-text h2 {
+    font-size: 2.4rem;
+  }
+
+  .presentation-text p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  .contact h2 {
+    font-size: 2rem;
+  }
+}
