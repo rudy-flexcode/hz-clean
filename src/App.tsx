@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 
 import Pix1 from "./images/pix1.png";
 import Pix2 from "./images/pix2.png";
@@ -7,6 +7,7 @@ import Pix2 from "./images/pix2.png";
 export default function App() {
   const [tarifsVisible, setTarifsVisible] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
+  const [showLegal, setShowLegal] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -14,7 +15,7 @@ export default function App() {
     message: "",
   });
 
-  // Détecte le scroll pour afficher la section TARIFS
+  // Scroll animation tarifs
   useEffect(() => {
     const onScroll = () => {
       const tarifSection = document.getElementById("tarifs");
@@ -28,12 +29,11 @@ export default function App() {
 
     window.addEventListener("scroll", onScroll);
     onScroll();
-
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Envoi du formulaire
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  // Envoi formulaire
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatusMessage("Envoi en cours...");
 
@@ -49,26 +49,18 @@ export default function App() {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
-        (response: EmailJSResponseStatus) => {
-          console.log("EmailJS success:", response);
+        () => {
           setStatusMessage("✅ Message envoyé avec succès !");
           setFormData({ name: "", email: "", message: "" });
         },
-        (error: EmailJSResponseStatus) => {
-          console.error("EmailJS error:", error);
-          setStatusMessage(
-            "❌ Une erreur est survenue. Vérifie tes clés et le template."
-          );
+        () => {
+          setStatusMessage("❌ Une erreur est survenue.");
         }
       );
   };
 
-  // Scroll vers le formulaire
-  const scrollToContact = (): void => {
-    const contactSection = document.querySelector(".contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
+  const scrollToContact = () => {
+    document.querySelector(".contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const tarifsData = [
@@ -77,36 +69,32 @@ export default function App() {
       price: "35 € / heure",
       desc: "Entretien régulier de bureaux, commerces et espaces professionnels.",
       desc2:
-        "INCLUS : Nettoyage des sols, dépoussiérage des surfaces accessibles, nettoyage des sanitaires, vitres intérieures, vidage des poubelles et remplacement des sacs.",
-      desc3:
-        "NON INCLUS : Nettoyage en hauteur, murs et plafonds, intérieur des appareils professionnels, vitres extérieures, remise en état après travaux ou sinistre.",
+        "INCLUS : sols, dépoussiérage, sanitaires, vitres intérieures/extérieures accessibles.",
+      desc3: "NON INCLUS : murs, plafonds.",
     },
     {
       title: "GRAND MÉNAGE",
       price: "",
-      desc: "1 chambre : 200 € · 2 chambres : 240 € · 3 chambres : 280 € · Chambre supplémentaire : 30 €. ",
+      desc: "1 chambre : 200 € · 2 chambres : 240 € · 3 chambres : 280 €",
       desc2:
-        "INCLUS : Dépoussiérage complet, nettoyage des sols, cuisine, salle de bains / WC, vitres intérieures, poubelles, ramassage et pliage du linge.",
+        "INCLUS : sols, cuisine, SDB/WC, vitres intérieures/extérieures accessibles.",
       desc3:
-        "NON INCLUS : Nettoyage des murs et plafonds, placards, intérieur des appareils électroménagers, hotte, extérieur des vitres, déplacement de meubles lourds.",
+        "NON INCLUS : murs, plafonds, placards, électroménager intérieur, hotte.",
     },
     {
       title: "EMMÉNAGEMENT / DÉMÉNAGEMENT",
-      price:
-        "1 chambre : 180 € · 2 chambres : 220 € · 3 chambres : 260 € · Chambre supplémentaire : 30 €. ",
-      desc:
-        "Avant un déménagement ou un état des lieux d’entrée ou de sortie. Logement vide ou presque vide.",
+      price: "1 chambre : 180 € · 2 chambres : 220 € · 3 chambres : 260 €",
+      desc: "Avant un déménagement ou état des lieux.",
       desc2:
-        "INCLUS : Dépoussiérage complet, nettoyage des sols, cuisine, sanitaires et vitres intérieures.",
-      desc3: "NON INCLUS : Nettoyage des murs et plafonds.",
+        "INCLUS : sols, cuisine, sanitaires, vitres intérieures/extérieures accessibles.",
+      desc3: "NON INCLUS : murs et plafonds.",
     },
     {
       title: "PARTICULIER",
       price: "2 heures minimum — 30 € / heure",
       desc2:
-        "INCLUS : Nettoyage des sols, dépoussiérage, cuisine, sanitaires, vitres intérieures et vidage des poubelles.",
-      desc3:
-        "NON INCLUS : Nettoyage des murs et plafonds, placards intérieurs, intérieur des appareils électroménagers, hotte, extérieur des vitres, déplacement de meubles lourds.",
+        "INCLUS : sols, cuisine, sanitaires, vitres intérieures/extérieures accessibles.",
+      desc3: "NON INCLUS : murs, plafonds.",
     },
   ];
 
@@ -134,18 +122,16 @@ export default function App() {
       <section className="presentation">
         <div className="presentation-container">
           <div className="presentation-image">
-            <img src={Pix2} alt="HZ Clean service de nettoyage" />
+            <img src={Pix2} alt="HZ Clean service" />
           </div>
-
           <div className="presentation-text">
             <h3>À propos de HZ Clean</h3>
             <h2>
-              Un service de nettoyage <br />
-              fiable, discret et organisé
+              Un service de nettoyage <br /> fiable, discret et organisé
             </h2>
             <p>
-              HZ Clean propose des prestations professionnelles, claires et sans
-              surprise, réalisées avec soin et ponctualité.
+              Prestations professionnelles, claires et sans surprise, réalisées
+              avec soin et ponctualité.
             </p>
           </div>
         </div>
@@ -162,16 +148,36 @@ export default function App() {
               {item.price && <p>{item.price}</p>}
               {item.desc && <p className="tarif-desc">{item.desc}</p>}
               {item.desc2 && <p className="tarif-inclus">{item.desc2}</p>}
-              {item.desc3 && <p className="tarif-non-inclus">{item.desc3}</p>}
+              {item.desc3 && (
+                <p className="tarif-non-inclus">{item.desc3}</p>
+              )}
             </div>
           ))}
+
+          {/* OPTION PREMIUM */}
+          <div className="bio-badge">
+            <strong>
+              Option Désinfection <br /> & Bio-nettoyage
+            </strong>
+            <ul>
+              <li>Après déménagement</li>
+              <li>Après maladie</li>
+              <li>Logement / bureaux très sollicités</li>
+            </ul>
+            <span className="bio-price">+35 € / intervention</span>
+          </div>
         </div>
+
+        <p className="tarif-note">
+          Tarif valable pour un logement en état normal. En cas de logement très
+          sale, encombré ou non signalé, un ajustement tarifaire pourra être
+          appliqué après visite.
+        </p>
       </section>
 
       {/* CONTACT */}
       <section className="contact">
         <h2>Contactez-nous</h2>
-
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -182,7 +188,6 @@ export default function App() {
             }
             required
           />
-
           <input
             type="email"
             placeholder="Email"
@@ -192,7 +197,6 @@ export default function App() {
             }
             required
           />
-
           <textarea
             placeholder="Message"
             value={formData.message}
@@ -201,13 +205,74 @@ export default function App() {
             }
             required
           />
-
           <button type="submit">Envoyer</button>
-
-          {/* Affichage du message de statut */}
           {statusMessage && <p>{statusMessage}</p>}
         </form>
       </section>
+
+      {/* FOOTER */}
+     <footer className="footer">
+  <p>
+    © 2026 HZ Clean — 
+    <button className="legal-link" onClick={() => setShowLegal(true)}>
+      Mentions légales
+    </button>
+    <span> · </span>
+    <a 
+      href="https://bugsquasher.vercel.app/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="dev-link"
+    >
+      Développé par BugSquasher
+    </a>
+  </p>
+</footer>
+
+      {/* MODAL */}
+      {showLegal && (
+        <div className="modal-overlay" onClick={() => setShowLegal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>Mentions légales</h2>
+            <p>
+              <strong>Entreprise :</strong> HZ Clean
+            </p>
+            <p>
+              <strong>Statut :</strong> Auto-entrepreneur
+            </p>
+            <p>
+              <strong>Email :</strong> hzcontact.re@gmail.com
+            </p>
+            <p>
+              <strong>Hébergeur :</strong> Vercel
+            </p>
+            <p>
+  <strong>Développement du site :</strong>{" "}
+  <a 
+    href="https://bugsquasher.vercel.app/" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="dev-link"
+  >
+    BugSquasher – Développeur web
+  </a>
+</p>
+
+            <h3>Confidentialité</h3>
+            <p>
+              Les données envoyées via le formulaire sont utilisées uniquement
+              pour répondre à votre demande.
+            </p>
+
+            <button
+              className="modal-close"
+              onClick={() => setShowLegal(false)}
+            >
+              Fermer
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
