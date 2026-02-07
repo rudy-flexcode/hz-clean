@@ -66,7 +66,7 @@ export default function App() {
   const tarifsData = [
     {
       title: "PROFESSIONNEL",
-      price: "35 € / heure",
+      price: "26 € / heure",
       desc: "Entretien régulier de bureaux, commerces et espaces professionnels.",
       desc2:
         "INCLUS : sols, dépoussiérage, sanitaires, vitres intérieures/extérieures accessibles.",
@@ -91,7 +91,7 @@ export default function App() {
     },
     {
       title: "PARTICULIER",
-      price: "2 heures minimum — 30 € / heure",
+      price: "2 heures minimum — 23 € / heure",
       desc2:
         "INCLUS : sols, cuisine, sanitaires, vitres intérieures/extérieures accessibles.",
       desc3: "NON INCLUS : murs, plafonds.",
@@ -99,12 +99,26 @@ export default function App() {
   ];
 
   return (
-    <div>
+    <div className="app">
       {/* HERO */}
       <section className="hero">
+        <div className="hero-sparkles" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
         <ul className="hero-features">
           <li>Ménage soigné et organisé</li>
-          <li>Produits respectueux (option bio)</li>
+          <li>Produits respectueux</li>
           <li>Sérieuse, discrète et ponctuelle</li>
           <li>Prestations claires, sans surprise</li>
         </ul>
@@ -154,17 +168,16 @@ export default function App() {
             </div>
           ))}
 
-          {/* OPTION PREMIUM */}
+          {/* BIO-NETTOYAGE INCLUS */}
           <div className="bio-badge">
             <strong>
-              Option Désinfection <br /> & Bio-nettoyage
+              Désinfection <br /> & Bio-nettoyage inclus
             </strong>
             <ul>
               <li>Après déménagement</li>
               <li>Après maladie</li>
               <li>Logement / bureaux très sollicités</li>
             </ul>
-            <span className="bio-price">+35 € / intervention</span>
           </div>
         </div>
 

@@ -10,6 +10,12 @@ body {
   background-color: #111;
   color: #fff;
 }
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 /* ------------------- BIO BADGE ------------------- */
 .bio-badge {
   width: 260px;
@@ -64,6 +70,57 @@ body {
   padding: 2rem;
 }
 
+.hero-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-sparkles span {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #ffffff 0%, #ffffff 55%, #c8fff0 100%);
+  clip-path: polygon(
+    50% 0%,
+    62% 38%,
+    100% 50%,
+    62% 62%,
+    50% 100%,
+    38% 62%,
+    0% 50%,
+    38% 38%
+  );
+  opacity: 0.95;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.95));
+  animation: sparkle 2.2s ease-in-out infinite;
+}
+
+.hero-sparkles span:nth-child(even) {
+  background: radial-gradient(circle, #ffffff 0%, #f7fffc 55%, #d7fff0 100%);
+}
+
+.hero-sparkles span:nth-child(1) { top: 12%; left: 10%; animation-duration: 2.6s; animation-delay: 0s; }
+.hero-sparkles span:nth-child(2) { top: 18%; left: 78%; width: 10px; height: 10px; animation-duration: 3.1s; animation-delay: 0.4s; }
+.hero-sparkles span:nth-child(3) { top: 32%; left: 22%; width: 7px; height: 7px; animation-duration: 2.3s; animation-delay: 0.8s; }
+.hero-sparkles span:nth-child(4) { top: 26%; left: 50%; width: 9px; height: 9px; animation-duration: 2.8s; animation-delay: 1.2s; }
+.hero-sparkles span:nth-child(5) { top: 42%; left: 85%; width: 7px; height: 7px; animation-duration: 3.4s; animation-delay: 0.2s; }
+.hero-sparkles span:nth-child(6) { top: 55%; left: 12%; width: 10px; height: 10px; animation-duration: 3.2s; animation-delay: 1.6s; }
+.hero-sparkles span:nth-child(7) { top: 60%; left: 60%; width: 7px; height: 7px; animation-duration: 2.4s; animation-delay: 0.6s; }
+.hero-sparkles span:nth-child(8) { top: 70%; left: 35%; width: 9px; height: 9px; animation-duration: 2.9s; animation-delay: 1s; }
+.hero-sparkles span:nth-child(9) { top: 78%; left: 80%; width: 7px; height: 7px; animation-duration: 3.6s; animation-delay: 0.3s; }
+.hero-sparkles span:nth-child(10) { top: 85%; left: 18%; width: 7px; height: 7px; animation-duration: 2.5s; animation-delay: 1.3s; }
+.hero-sparkles span:nth-child(11) { top: 30%; left: 90%; width: 9px; height: 9px; animation-duration: 3s; animation-delay: 0.9s; }
+.hero-sparkles span:nth-child(12) { top: 10%; left: 55%; width: 7px; height: 7px; animation-duration: 2.2s; animation-delay: 1.8s; }
+
+@keyframes sparkle {
+  0% { opacity: 0.15; transform: translateY(0) scale(0.6) rotate(0deg); }
+  45% { opacity: 1; transform: translateY(-8px) scale(1.35) rotate(10deg); }
+  70% { opacity: 0.7; transform: translateY(-4px) scale(1.05) rotate(6deg); }
+  100% { opacity: 0.2; transform: translateY(0) scale(0.7) rotate(0deg); }
+}
+
 .hero-features {
   list-style: none;
   display: flex;
@@ -77,6 +134,13 @@ body {
   color: #fff;
   white-space: nowrap;
   z-index: 2;
+}
+
+.hero h1,
+.hero p,
+.hero button {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-features li {
@@ -291,16 +355,6 @@ body {
   font-style: italic;           /* italique pour distinguer */
   text-align: center;          /* centré sous les cartes */
 }
-.bio-price {
-  margin-top: 0.6rem;
-  font-weight: 700;
-  font-size: 1rem;
-  color: #064e3b;
-  background: rgba(255,255,255,0.7);
-  padding: 0.3rem 0.6rem;
-  border-radius: 12px;
-}
-
 /* ------------------- CONTACT ------------------- */
 .contact {
   padding: 4rem 2rem;
@@ -352,6 +406,7 @@ body {
   padding: 1rem;
   font-size: 0.85rem;
   color: #aaa;
+  margin-top: auto;
 }
 
 .footer .legal-link {
@@ -369,9 +424,50 @@ body {
   font-size: 0.85rem;
 }
 
+.footer .dev-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.6rem;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0a3b2d;
+  background: linear-gradient(135deg, #ffffff 0%, #c9fff0 100%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 999px;
+  box-shadow:
+    0 10px 24px rgba(17, 185, 127, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+  animation: devGlow 2.8s ease-in-out infinite;
+}
+
+.footer .dev-link::before {
+  content: "✦";
+  font-size: 0.85rem;
+  color: #0aa86a;
+  text-shadow: 0 0 6px rgba(10, 168, 106, 0.6);
+}
+
 .dev-link:hover {
   color: #ff1a8c;
   text-decoration: underline;
+}
+
+.footer .dev-link:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 28px rgba(17, 185, 127, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+@keyframes devGlow {
+  0% { box-shadow: 0 10px 24px rgba(17, 185, 127, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8); }
+  50% { box-shadow: 0 14px 30px rgba(17, 185, 127, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.95); }
+  100% { box-shadow: 0 10px 24px rgba(17, 185, 127, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8); }
 }
 
 /* ------------------- MODAL ------------------- */
