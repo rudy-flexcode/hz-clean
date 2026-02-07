@@ -74,8 +74,8 @@ export default function App() {
     },
     {
       title: "GRAND MÉNAGE",
-      price: "",
-      desc: "1 chambre : 200 € · 2 chambres : 240 € · 3 chambres : 280 €",
+      price: "1 chambre : 200 €\n2 chambres : 240 €\n3 chambres : 280 €",
+      desc: "",
       desc2:
         "INCLUS : sols, cuisine, SDB/WC, vitres intérieures/extérieures accessibles.",
       desc3:
@@ -83,8 +83,8 @@ export default function App() {
     },
     {
       title: "EMMÉNAGEMENT / DÉMÉNAGEMENT",
-      price: "1 chambre : 180 € · 2 chambres : 220 € · 3 chambres : 260 €",
-      desc: "Avant un déménagement ou état des lieux.",
+      price: "1 chambre : 180 €\n2 chambres : 220 €\n3 chambres : 260 €",
+      desc: "",
       desc2:
         "INCLUS : sols, cuisine, sanitaires, vitres intérieures/extérieures accessibles.",
       desc3: "NON INCLUS : murs et plafonds.",
@@ -159,7 +159,7 @@ export default function App() {
           {tarifsData.map((item, index) => (
             <div key={index} className="card">
               <h3>{item.title}</h3>
-              {item.price && <p>{item.price}</p>}
+              {item.price && <p className="tarif-price">{item.price}</p>}
               {item.desc && <p className="tarif-desc">{item.desc}</p>}
               {item.desc2 && <p className="tarif-inclus">{item.desc2}</p>}
               {item.desc3 && (
