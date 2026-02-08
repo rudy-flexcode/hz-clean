@@ -116,12 +116,20 @@ export default function App() {
           <span />
           <span />
         </div>
-        <ul className="hero-features">
-          <li>Ménage soigné et organisé</li>
-          <li>Produits respectueux</li>
-          <li>Sérieuse, discrète et ponctuelle</li>
-          <li>Prestations claires, sans surprise</li>
-        </ul>
+        <div className="hero-features-track">
+          <ul className="hero-features">
+            <li>Ménage soigné et organisé</li>
+            <li>Produits respectueux</li>
+            <li>Sérieuse, discrète et ponctuelle</li>
+            <li>Prestations claires, sans surprise</li>
+          </ul>
+          <ul className="hero-features hero-features-clone" aria-hidden="true">
+            <li>Ménage soigné et organisé</li>
+            <li>Produits respectueux</li>
+            <li>Sérieuse, discrète et ponctuelle</li>
+            <li>Prestations claires, sans surprise</li>
+          </ul>
+        </div>
 
         <h1>HZ Clean</h1>
         <p>Services de propreté et bio-nettoyage</p>
