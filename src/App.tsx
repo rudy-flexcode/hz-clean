@@ -240,7 +240,7 @@ export default function App() {
     </button>
     <span> · </span>
     <a 
-      href="https://bugsquasher.vercel.app/" 
+      href="https://kreoltech.vercel.app/" 
       target="_blank" 
       rel="noopener noreferrer"
       className="dev-link"
